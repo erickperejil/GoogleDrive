@@ -25,4 +25,6 @@ public interface ArchivoService {
 
     public List<Archivo> obtenerCarpetasporPersona(int idPropietario);
     
+    public Archivo obtenerArchivo(int idArchivo);
+
 }

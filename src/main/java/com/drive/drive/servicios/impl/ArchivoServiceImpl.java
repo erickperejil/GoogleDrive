@@ -61,5 +61,11 @@ public class ArchivoServiceImpl implements ArchivoService{
         throw new UnsupportedOperationException("Unimplemented method 'obtenerCarpetasporPersona'");
     }
 
+    @Override
+    public Archivo obtenerArchivo(int idArchivo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerArchivo'");
+    }
+
     
 }
