@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drive.drive.modelos.Usuario;
-import com.drive.drive.servicios.impl.UsuarioServiceImpl;
+import com.drive.drive.modelos.Genero;
+import com.drive.drive.servicios.impl.GeneroServiceImpl;
 
 @RestController
-@RequestMapping("api/usuario")
-public class UsuarioController {
-
+@RequestMapping("/api/genero")
+public class GeneroController {
+    
     @Autowired
-    private UsuarioServiceImpl usuarioServiceImpl;
+    private GeneroServiceImpl generoServiceImpl;
 
     @PostMapping("/crear")
-    public Usuario crearUsuario(@RequestBody Usuario nvoUsuario){
-        return this.usuarioServiceImpl.crearUsuario(nvoUsuario);
+    public Genero crearGenero(@RequestBody Genero nvoGenero){
+        return this.generoServiceImpl.crearGenero(nvoGenero);
     }
 }

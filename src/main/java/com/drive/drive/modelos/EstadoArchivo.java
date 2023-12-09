@@ -30,7 +30,7 @@ public class EstadoArchivo {
     private int idEstado;
 
     @Column(name = "tipo_estado")
-    private int tipoEstado;
+    private String tipoEstado;
     
     @OneToMany(mappedBy = "estadoArchivo")
     private List<Archivo> archivos;
