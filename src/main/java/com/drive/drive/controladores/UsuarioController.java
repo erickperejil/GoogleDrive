@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drive.drive.modelos.Usuario;
-import com.drive.drive.servicios.impl.UbicacionArchivoImpl;
 import com.drive.drive.servicios.impl.UsuarioServiceImpl;
 
 @RestController

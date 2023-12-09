@@ -25,12 +25,12 @@ public class UsuarioServiceImpl implements UsuarioService{
         }
         Genero genero = this.generoRepository.findById(usuario.getGenero().getIdGenero()).get();
         usuario.setGenero(genero);
-        usuarioRepository.save(usuario);
+        Usuario nvo = usuarioRepository.save(usuario);
 
         UbicacionArchivo ubicacion = new UbicacionArchivo();
         ubicacion.setNombreUbicacionArchivo("Home");
         ubicacion.setUbicacionPadre(null);
-        ubicacion.setUsuario(usuarioRepository.findById(usuario.getIdUsuario()).get());
+        ubicacion.setUsuario(usuarioRepository.findById(nvo.getIdUsuario()).get());
         
         return usuario; 
     }
