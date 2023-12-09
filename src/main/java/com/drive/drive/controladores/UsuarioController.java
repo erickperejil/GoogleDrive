@@ -1,6 +1,9 @@
 package com.drive.drive.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +27,10 @@ public class UsuarioController {
         int usernvo = usuario.getIdUsuario();
         ubicacionArchivoImpl.crearUbicacionesArchivoServices(usernvo);
         return usuario;
+    }
+
+    @GetMapping("/obtenerTodos")
+    public List<Usuario> obtenerTodos(){
+        return this.usuarioServiceImpl.obtenertodos();
     }
 }

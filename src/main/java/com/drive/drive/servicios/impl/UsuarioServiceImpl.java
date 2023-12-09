@@ -1,5 +1,7 @@
 package com.drive.drive.servicios.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +62,11 @@ public class UsuarioServiceImpl implements UsuarioService{
             return usuarioEncontrado;
         } 
         return null;
+    }
+
+    @Override
+    public List<Usuario> obtenertodos() {
+        return this.usuarioRepository.findAll();
     }
     
 }
