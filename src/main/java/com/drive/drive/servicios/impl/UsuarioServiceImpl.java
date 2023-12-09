@@ -10,12 +10,14 @@ import com.drive.drive.modelos.Genero;
 import com.drive.drive.modelos.UbicacionArchivo;
 import com.drive.drive.modelos.Usuario;
 import com.drive.drive.repositorios.GeneroRepository;
+import com.drive.drive.repositorios.UbicacionArchivoRepository;
 import com.drive.drive.repositorios.UsuarioRepository;
 import com.drive.drive.servicios.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService{
-
+    @Autowired
+    private UbicacionArchivoRepository ubicacionArchivoRepository;
     @Autowired
     private GeneroRepository generoRepository;
     @Autowired
@@ -33,6 +35,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         ubicacion.setNombreUbicacionArchivo("Home");
         ubicacion.setUbicacionPadre(null);
         ubicacion.setUsuario(usuarioRepository.findById(nvo.getIdUsuario()).get());
+        this.ubicacionArchivoRepository.save(ubicacion);
         
         return usuario; 
     }
