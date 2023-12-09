@@ -48,7 +48,6 @@ public class Usuario {
     @Column(name = "pais")
     private String pais;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
     private Genero genero;

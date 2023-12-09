@@ -6,4 +6,5 @@ import com.drive.drive.modelos.Genero;
 
 public interface GeneroRepository extends JpaRepository<Genero, Integer> {
 
+
 }
