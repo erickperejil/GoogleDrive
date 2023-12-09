@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drive.drive.modelos.Usuario;
+import com.drive.drive.servicios.impl.UbicacionArchivoImpl;
 import com.drive.drive.servicios.impl.UsuarioServiceImpl;
 
 @RestController
@@ -15,9 +16,13 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioServiceImpl usuarioServiceImpl;
+    private UbicacionArchivoImpl ubicacionArchivoImpl;
 
     @PostMapping("/crear")
     public Usuario crearUsuario(@RequestBody Usuario nvoUsuario){
-        return this.usuarioServiceImpl.crearUsuario(nvoUsuario);
+        Usuario usuario = this.usuarioServiceImpl.crearUsuario(nvoUsuario);
+        int usernvo = usuario.getIdUsuario();
+        ubicacionArchivoImpl.crearUbicacionesArchivoServices(usernvo);
+        return usuario;
     }
 }
