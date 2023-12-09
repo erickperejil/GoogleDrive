@@ -1,5 +1,6 @@
 package com.drive.drive.servicios;
 
+import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,10 @@ public interface ArchivoService {
     public Archivo crearCarpeta(Carpeta carpeta);
 
     public String extraerCarpeta(int idArchivo);
+
+    List <Archivo> obtenerArchivosPorNombre(String nombre);
+
+    public List<Archivo> obtenertodos();
 
 
 

@@ -24,12 +24,12 @@ public class CopiadeSeguridadController {
     public CopiaDeSeguridad crearCopiaDeSeguridad(@RequestBody CopiaDeSeguridad nvaCopiaDeSeguridad){
         return this.copiaDeSeguridadServiceImpl.crearCopiaDeSeguridad(nvaCopiaDeSeguridad);
     }
-    @GetMapping("/obtenerTodos")
+    @GetMapping("/obtenerTodasCopias")
     public List<CopiaDeSeguridad> obtenerTodasListas(){
         return this.copiaDeSeguridadServiceImpl.obtenertodos();
     }
 
-    @GetMapping("/buscar/{idUsuario}")
+    @GetMapping("/buscar/{idCopiaDeSeguridad}")
     public CopiaDeSeguridad buscarCopiaDeSeguridad(@PathVariable(name = "idCopiaDeSeguridad")int idCopiaDeSeguridad){
         return this.copiaDeSeguridadServiceImpl.obtenerCopiaDeSeguridad(idCopiaDeSeguridad);
     }

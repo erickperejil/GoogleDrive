@@ -2,8 +2,10 @@ package com.drive.drive.controladores;
 
 import com.drive.drive.Dto.Carpeta;
 import com.drive.drive.modelos.Archivo;
+import com.drive.drive.servicios.ArchivoService;
 import com.drive.drive.servicios.impl.ArchivoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
@@ -15,6 +17,11 @@ public class ArchivoController {
 
     @Autowired
     private ArchivoServiceImpl archivoServiceImpl;
+
+    @GetMapping("/obtenerTodos")
+    public List<Archivo> obtenerTodasListas(){
+        return this.archivoServiceImpl.obtenertodos();
+    }
 
     @GetMapping("/obtenerArchivos")
     public List<Archivo> obtenerTodosLosArchivos(@RequestParam(name = "user") int usuario) {
@@ -77,5 +84,22 @@ public class ArchivoController {
         return archivoServiceImpl.crearArchivo(archivo);
     }
 
+    private final ArchivoService archivoService;
+
+    
+    public ArchivoController(ArchivoService archivoService) {
+        this.archivoService = archivoService;
+    }
+
+    @GetMapping("/{nombre}")
+    public ResponseEntity<List<Archivo>> obtenerArchivosPorNombre(@PathVariable String nombre) {
+        List<Archivo> archivos = archivoService.obtenerArchivosPorNombre(nombre);
+
+        if (!archivos.isEmpty()) {
+            return ResponseEntity.ok(archivos);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 

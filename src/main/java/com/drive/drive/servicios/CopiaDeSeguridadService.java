@@ -11,7 +11,7 @@ public interface CopiaDeSeguridadService {
 
     public CopiaDeSeguridad actualizarCopiaDeSeguridad(CopiaDeSeguridad copiaDeSeguridad);
 
-    public CopiaDeSeguridad obtenerCopiaDeSeguridad(int copiaDeSeguridad);
+    public CopiaDeSeguridad obtenerCopiaDeSeguridad(int idCopiaDeSeguridad);
 
     public List<CopiaDeSeguridad> obtenertodos();
 

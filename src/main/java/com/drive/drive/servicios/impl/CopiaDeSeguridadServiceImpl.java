@@ -37,15 +37,13 @@ public class CopiaDeSeguridadServiceImpl implements CopiaDeSeguridadService{
     }
 
     @Override
-    public CopiaDeSeguridad obtenerCopiaDeSeguridad(int copiaDeSeguridad) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerCopiaDeSeguridad'");
+    public CopiaDeSeguridad obtenerCopiaDeSeguridad(int idCopiaDeSeguridad) {
+        return this.copiaDeSeguridadRepository.findById(idCopiaDeSeguridad).get();
     }
 
     @Override
     public List<CopiaDeSeguridad> obtenertodos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenertodos'");
+        return this.copiaDeSeguridadRepository.findAll();
     }
     
 }

@@ -83,13 +83,13 @@ public class ArchivoServiceImpl implements ArchivoService{
     @Override
     public List<Archivo> obtenerArchivosporNombre(int idPropietario, String Nombre) {
         List<Archivo> lista = this.archivoRepository.findAll();
-        List<Archivo> lista2 = new LinkedList<Archivo>();
-        for (Archivo archivo : lista) {
-            if (archivo.getNombre() == Nombre && archivo.getPropietario().getIdUsuario() == idPropietario) {
-                lista2.add(archivo);
-            }
-        }
-        return lista2;
+        // List<Archivo> lista2 = new LinkedList<Archivo>();
+        // for (Archivo archivo : lista) {
+        //     if (archivo.getNombre() == Nombre && archivo.getPropietario().getIdUsuario() == idPropietario) {
+        //         lista2.add(archivo);
+        //     }
+        // }
+        return this.archivoRepository.findAll();
 
     }
 
@@ -136,6 +136,22 @@ public class ArchivoServiceImpl implements ArchivoService{
         return "Carpeta Extraida";
         
     
+    }
+
+   
+    
+    public ArchivoServiceImpl(ArchivoRepository archivoRepository) {
+        this.archivoRepository = archivoRepository;
+    }
+
+    @Override
+    public List<Archivo> obtenerArchivosPorNombre(String nombre) {
+       return archivoRepository.findAllByNombre(nombre);
+    }
+
+    @Override
+    public List<Archivo> obtenertodos() {
+        return this.archivoRepository.findAll();
     }
 
 

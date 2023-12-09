@@ -18,5 +18,6 @@ public interface ArchivoRepository extends JpaRepository<Archivo, Integer> {
     List<Archivo> findByUbicacionArchivo_NombreUbicacionArchivoAndPropietario_IdUsuario(String nombre, int propietario);
     List<Archivo> findByEstadoArchivo_IdEstadoAndPropietario_IdUsuario(int estado, int propietario);
     List<Archivo> findByNombreAndPropietario_IdUsuario(String nombre, int propietario);
+    List<Archivo> findAllByNombre(String nombre);
 
 }
