@@ -16,13 +16,10 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioServiceImpl usuarioServiceImpl;
-    private UbicacionArchivoImpl ubicacionArchivoImpl;
 
     @PostMapping("/crear")
     public Usuario crearUsuario(@RequestBody Usuario nvoUsuario){
         Usuario usuario = this.usuarioServiceImpl.crearUsuario(nvoUsuario);
-        int usernvo = usuario.getIdUsuario();
-        ubicacionArchivoImpl.crearUbicacionesArchivo(usernvo);
         return usuario;
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.drive.drive.Dto.Login;
 import com.drive.drive.modelos.Genero;
+import com.drive.drive.modelos.UbicacionArchivo;
 import com.drive.drive.modelos.Usuario;
 import com.drive.drive.repositorios.GeneroRepository;
 import com.drive.drive.repositorios.UsuarioRepository;
@@ -25,6 +26,11 @@ public class UsuarioServiceImpl implements UsuarioService{
         Genero genero = this.generoRepository.findById(usuario.getGenero().getIdGenero()).get();
         usuario.setGenero(genero);
         usuarioRepository.save(usuario);
+
+        UbicacionArchivo ubicacion = new UbicacionArchivo();
+        ubicacion.setNombreUbicacionArchivo("Home");
+        ubicacion.setUbicacionPadre(null);
+        ubicacion.setUsuario(usuarioRepository.findById(usuario.getIdUsuario()).get());
         
         return usuario; 
     }
