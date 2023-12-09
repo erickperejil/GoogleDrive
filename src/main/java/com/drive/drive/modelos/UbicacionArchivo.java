@@ -36,6 +36,11 @@ public class UbicacionArchivo {
     @JoinColumn(name = "id_ubicacion_padre", referencedColumnName = "id_ubicacion")
     private UbicacionArchivo ubicacionPadre;
 
+    //agregar el usuario de la ubicacion
+    @ManyToOne 
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "ubicacionPadre")
     private List<UbicacionArchivo> ubicacionesHijas;
 
