@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +26,17 @@ public class UsuarioController {
     public Usuario crearUsuario(@RequestBody Usuario nvoUsuario){
         Usuario usuario = this.usuarioServiceImpl.crearUsuario(nvoUsuario);
         int usernvo = usuario.getIdUsuario();
-        ubicacionArchivoImpl.crearUbicacionesArchivo(usernvo);
+        this.ubicacionArchivoImpl.crearUbicacionesArchivo(usernvo);
         return usuario;
     }
 
     @GetMapping("/obtenerTodos")
     public List<Usuario> obtenerTodos(){
         return this.usuarioServiceImpl.obtenertodos();
+    }
+
+    @GetMapping("/buscar/{idUsuario}")
+    public Usuario buscarUsuario(@PathVariable(name = "idUsuario")int idUsuario){
+        return this.usuarioServiceImpl.obtenerUsuario(idUsuario);
     }
 }

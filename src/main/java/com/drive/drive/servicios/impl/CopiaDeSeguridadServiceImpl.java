@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.drive.drive.modelos.CopiaDeSeguridad;
 import com.drive.drive.repositorios.CopiaDeSeguridadRepository;
-import com.drive.drive.repositorios.GeneroRepository;
 import com.drive.drive.servicios.CopiaDeSeguridadService;
 @Service
 public class CopiaDeSeguridadServiceImpl implements CopiaDeSeguridadService{
