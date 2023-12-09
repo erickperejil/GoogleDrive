@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.drive.drive.Dto.Login;
+import com.drive.drive.modelos.Genero;
 import com.drive.drive.modelos.Usuario;
+import com.drive.drive.repositorios.GeneroRepository;
 import com.drive.drive.repositorios.UsuarioRepository;
 import com.drive.drive.servicios.UsuarioService;
 
@@ -12,12 +14,16 @@ import com.drive.drive.servicios.UsuarioService;
 public class UsuarioServiceImpl implements UsuarioService{
 
     @Autowired
+    private GeneroRepository generoRepository;
+    @Autowired
     private UsuarioRepository usuarioRepository;
     @Override
     public Usuario crearUsuario(Usuario usuario) {
         if (correoExistente(usuario.getCorreo())) {
             throw new IllegalArgumentException("Ya existe un usuario con este correo");
         }
+        Genero genero = this.generoRepository.findById(usuario.getGenero()).get();
+        usuario.setGenero(genero);
         usuarioRepository.save(usuario);
         
         return usuario; 
