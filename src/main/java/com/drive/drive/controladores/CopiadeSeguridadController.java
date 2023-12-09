@@ -1,12 +1,17 @@
 package com.drive.drive.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drive.drive.modelos.CopiaDeSeguridad;
+import com.drive.drive.modelos.Usuario;
 import com.drive.drive.servicios.impl.CopiaDeSeguridadServiceImpl;
 
 @RestController
@@ -20,5 +25,13 @@ public class CopiadeSeguridadController {
     public CopiaDeSeguridad crearCopiaDeSeguridad(@RequestBody CopiaDeSeguridad nvaCopiaDeSeguridad){
         return this.copiaDeSeguridadServiceImpl.crearCopiaDeSeguridad(nvaCopiaDeSeguridad);
     }
-    
+    @GetMapping("/obtenerTodos")
+    public List<CopiaDeSeguridad> obtenerTodasListas(){
+        return this.copiaDeSeguridadServiceImpl.obtenerCopiasDeSeguridad(0);
+    }
+
+    // @GetMapping("/buscar/{idUsuario}")
+    // public Usuario buscarUsuario(@PathVariable(name = "idUsuario")int idUsuario){
+    //     return this.usuarioServiceImpl.obtenerUsuario(idUsuario);
+    // }
 }
