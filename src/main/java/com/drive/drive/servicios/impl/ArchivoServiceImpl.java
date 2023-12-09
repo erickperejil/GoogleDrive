@@ -12,6 +12,7 @@ import com.drive.drive.modelos.Archivo;
 import com.drive.drive.modelos.Compartido;
 import com.drive.drive.modelos.EstadoArchivo;
 import com.drive.drive.modelos.TipoArchivo;
+import com.drive.drive.modelos.UbicacionArchivo;
 import com.drive.drive.modelos.Usuario;
 import com.drive.drive.repositorios.ArchivoRepository;
 import com.drive.drive.repositorios.CompartidoRepository;
@@ -102,10 +103,12 @@ public class ArchivoServiceImpl implements ArchivoService{
         Usuario usuario = usuarioRepository.findById(archivo.getPropietario().getIdUsuario()).get();
         EstadoArchivo estado = estadoArchivoRepositoy.findById(archivo.getEstadoArchivo().getIdEstado()).get();
         TipoArchivo tipo = tipoArchivoRepository.findById(archivo.getTipoArchivo().getIdTipoArchivo()).get();
+        UbicacionArchivo ubicacion = ubicacionArchivoRepository.findById(archivo.getUbicacionArchivo().getIdUbicacion()).get();
 
         archivo.setPropietario(usuario);
         archivo.setEstadoArchivo(estado);
         archivo.setTipoArchivo(tipo);
+        archivo.setUbicacionArchivo(ubicacion);
         return this.archivoRepository.save(archivo);
     }
 
