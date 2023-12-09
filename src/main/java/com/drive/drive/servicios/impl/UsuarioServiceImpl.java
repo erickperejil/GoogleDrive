@@ -22,7 +22,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         if (correoExistente(usuario.getCorreo())) {
             throw new IllegalArgumentException("Ya existe un usuario con este correo");
         }
-        Genero genero = this.generoRepository.findById(usuario.getIdgenero()).get();
+        Genero genero = this.generoRepository.findById(usuario.getGenero().getIdGenero()).get();
         usuario.setGenero(genero);
         usuarioRepository.save(usuario);
         
