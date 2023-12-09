@@ -12,4 +12,6 @@ public interface CopiaDeSeguridadService {
 
     public List<CopiaDeSeguridad> obtenerCopiasDeSeguridad(int Usuario);
 
+    public String eliminarCopiaDeSeguridad(int idCopiaDeSeguridad);
+
 }

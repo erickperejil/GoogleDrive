@@ -27,8 +27,17 @@ public class CopiaDeSeguridadServiceImpl implements CopiaDeSeguridadService{
 
     @Override
     public List<CopiaDeSeguridad> obtenerCopiasDeSeguridad(int Usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerCopiasDeSeguridad'");
+        return this.copiaDeSeguridadRepository.findAll();
+    }
+
+    @Override
+    public String eliminarCopiaDeSeguridad(int idCopiaDeSeguridad) {
+        CopiaDeSeguridad copiaDeSeguridad = this.copiaDeSeguridadRepository.findById(idCopiaDeSeguridad).get();
+        if (copiaDeSeguridad != null) {
+            this.copiaDeSeguridadRepository.delete(copiaDeSeguridad);
+            return "eliminado";
+        }
+        return "copia no entregada";
     }
     
 }
