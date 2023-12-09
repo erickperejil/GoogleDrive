@@ -16,6 +16,8 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "tbl_archivos")
 @Getter
@@ -43,24 +45,26 @@ public class Archivo {
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "tipo_archivo", referencedColumnName = "id_tipo_archivo")
+    @JoinColumn(name = "id_tipo_archivo", referencedColumnName = "id_tipo_archivo")
     private TipoArchivo tipoArchivo;
 
     @ManyToOne
-    @JoinColumn(name = "estado", referencedColumnName = "id_estado")
+    @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
     private EstadoArchivo estadoArchivo;
 
     @ManyToOne
-    @JoinColumn(name = "ubicacion", referencedColumnName = "id_ubicacion")
+    @JoinColumn(name = "id_ubicacion", referencedColumnName = "id_ubicacion")
     private UbicacionArchivo ubicacionArchivo;
 
     @ManyToOne
     @JoinColumn(name = "id_propietario", referencedColumnName = "id_usuario")
     private Usuario propietario;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "archivo")
     private List<Compartido> compartidos;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "archivo")
     private List<ModificacionArchivo> modificaciones;
 }

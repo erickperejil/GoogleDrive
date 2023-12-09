@@ -82,8 +82,15 @@ public class ArchivoServiceImpl implements ArchivoService{
 
     @Override
     public List<Archivo> obtenerArchivosporNombre(int idPropietario, String Nombre) {
-        List<Archivo> listaArchivos = this.archivoRepository.findByNombreAndPropietario_IdUsuario(Nombre, idPropietario);
-        return listaArchivos;
+        List<Archivo> lista = this.archivoRepository.findAll();
+        List<Archivo> lista2 = new LinkedList<Archivo>();
+        for (Archivo archivo : lista) {
+            if (archivo.getNombre() == Nombre && archivo.getPropietario().getIdUsuario() == idPropietario) {
+                lista2.add(archivo);
+            }
+        }
+        return lista2;
+
     }
 
     @Override
@@ -100,16 +107,7 @@ public class ArchivoServiceImpl implements ArchivoService{
 
     @Override
     public Archivo crearArchivo(Archivo archivo) {
-        Usuario usuario = usuarioRepository.findById(archivo.getPropietario().getIdUsuario()).get();
-        EstadoArchivo estado = estadoArchivoRepositoy.findById(archivo.getEstadoArchivo().getIdEstado()).get();
-        TipoArchivo tipo = tipoArchivoRepository.findById(archivo.getTipoArchivo().getIdTipoArchivo()).get();
-        UbicacionArchivo ubicacion = ubicacionArchivoRepository.findById(archivo.getUbicacionArchivo().getIdUbicacion()).get();
-
-        archivo.setPropietario(usuario);
-        archivo.setEstadoArchivo(estado);
-        archivo.setTipoArchivo(tipo);
-        archivo.setUbicacionArchivo(ubicacion);
-        return this.archivoRepository.save(archivo);
+        return archivoRepository.save(archivo);
     }
 
     @Override

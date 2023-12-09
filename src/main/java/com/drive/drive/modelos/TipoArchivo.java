@@ -2,6 +2,8 @@ package com.drive.drive.modelos;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class TipoArchivo {
     @Column(name = "tipo_archivo")
     private String tipoArchivo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tipoArchivo")
     private List<Archivo> archivos;
 }

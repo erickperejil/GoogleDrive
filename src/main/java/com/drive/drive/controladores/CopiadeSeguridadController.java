@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.drive.drive.modelos.CopiaDeSeguridad;
-import com.drive.drive.modelos.Usuario;
 import com.drive.drive.servicios.impl.CopiaDeSeguridadServiceImpl;
 
 @RestController
@@ -27,11 +26,11 @@ public class CopiadeSeguridadController {
     }
     @GetMapping("/obtenerTodos")
     public List<CopiaDeSeguridad> obtenerTodasListas(){
-        return this.copiaDeSeguridadServiceImpl.obtenerCopiasDeSeguridad(0);
+        return this.copiaDeSeguridadServiceImpl.obtenertodos();
     }
 
-    // @GetMapping("/buscar/{idUsuario}")
-    // public Usuario buscarUsuario(@PathVariable(name = "idUsuario")int idUsuario){
-    //     return this.usuarioServiceImpl.obtenerUsuario(idUsuario);
-    // }
+    @GetMapping("/buscar/{idUsuario}")
+    public CopiaDeSeguridad buscarCopiaDeSeguridad(@PathVariable(name = "idCopiaDeSeguridad")int idCopiaDeSeguridad){
+        return this.copiaDeSeguridadServiceImpl.obtenerCopiaDeSeguridad(idCopiaDeSeguridad);
+    }
 }

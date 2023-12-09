@@ -4,7 +4,7 @@ import jakarta.persistence.Id;
 
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +32,7 @@ public class EstadoArchivo {
     @Column(name = "tipo_estado")
     private String tipoEstado;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "estadoArchivo")
     private List<Archivo> archivos;
 
