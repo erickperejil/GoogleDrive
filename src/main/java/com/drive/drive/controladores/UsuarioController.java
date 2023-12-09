@@ -25,7 +25,7 @@ public class UsuarioController {
     public Usuario crearUsuario(@RequestBody Usuario nvoUsuario){
         Usuario usuario = this.usuarioServiceImpl.crearUsuario(nvoUsuario);
         int usernvo = usuario.getIdUsuario();
-        ubicacionArchivoImpl.crearUbicacionesArchivoServices(usernvo);
+        ubicacionArchivoImpl.crearUbicacionesArchivo(usernvo);
         return usuario;
     }
 

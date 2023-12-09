@@ -15,7 +15,7 @@ public class UbicacionArchivoImpl implements UbicacionArchivoService {
     @Autowired UsuarioRepository usuarioRepository;
 
     @Override
-    public UbicacionArchivo crearUbicacionesArchivoServices(int usuario) {
+    public UbicacionArchivo crearUbicacionesArchivo(int usuario) {
         UbicacionArchivo ubicacion = new UbicacionArchivo();
         ubicacion.setNombreUbicacionArchivo("Home");
         ubicacion.setUbicacionPadre(null);
