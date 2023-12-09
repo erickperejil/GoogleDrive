@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import com.drive.drive.Dto.Carpeta;
 import com.drive.drive.modelos.Archivo;
 import com.drive.drive.modelos.Compartido;
+import com.drive.drive.modelos.EstadoArchivo;
+import com.drive.drive.modelos.TipoArchivo;
+import com.drive.drive.modelos.Usuario;
 import com.drive.drive.repositorios.ArchivoRepository;
 import com.drive.drive.repositorios.CompartidoRepository;
+import com.drive.drive.repositorios.EstadoArchivoRepositoy;
 import com.drive.drive.repositorios.TipoArchivoRepository;
 import com.drive.drive.repositorios.UbicacionArchivoRepository;
 import com.drive.drive.repositorios.UsuarioRepository;
@@ -25,6 +29,7 @@ public class ArchivoServiceImpl implements ArchivoService{
     @Autowired UsuarioRepository usuarioRepository;
     @Autowired UbicacionArchivoRepository ubicacionArchivoRepository;
     @Autowired TipoArchivoRepository tipoArchivoRepository;
+    @Autowired EstadoArchivoRepositoy estadoArchivoRepositoy;
 
     @Override
     public List<Archivo> obtenerTodosLosArchivos(int idPropietario) {
@@ -94,6 +99,13 @@ public class ArchivoServiceImpl implements ArchivoService{
 
     @Override
     public Archivo crearArchivo(Archivo archivo) {
+        Usuario usuario = usuarioRepository.findById(archivo.getPropietario().getIdUsuario()).get();
+        EstadoArchivo estado = estadoArchivoRepositoy.findById(archivo.getEstadoArchivo().getIdEstado()).get();
+        TipoArchivo tipo = tipoArchivoRepository.findById(archivo.getTipoArchivo().getIdTipoArchivo()).get();
+
+        archivo.setPropietario(usuario);
+        archivo.setEstadoArchivo(estado);
+        archivo.setTipoArchivo(tipo);
         return this.archivoRepository.save(archivo);
     }
 
