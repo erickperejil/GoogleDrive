@@ -29,7 +29,7 @@ public class ArchivoController {
         return archivoServiceImpl.obtenerArchivosPorTipo(usuario, tipo);
     }
 
-    @PostMapping("/Crear")
+    @PostMapping("/crear")
     public Archivo crearArchivo(@RequestBody Archivo archivo) {
         return archivoServiceImpl.crearArchivo(archivo);
     }
