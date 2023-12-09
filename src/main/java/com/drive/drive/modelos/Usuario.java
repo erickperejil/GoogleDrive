@@ -51,10 +51,6 @@ public class Usuario {
     @Column(name = "id_genero")
     private int idgenero;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "id_genero", referencedColumnName = "id_genero")
-    private Genero genero;
 
     @JsonIgnore
     @OneToMany(mappedBy = "propietario")
