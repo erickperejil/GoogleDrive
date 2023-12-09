@@ -3,6 +3,7 @@ package com.drive.drive.servicios;
 import java.util.Date;
 import java.util.List;
 
+import com.drive.drive.Dto.Carpeta;
 import com.drive.drive.modelos.Archivo;
 
 public interface ArchivoService {
@@ -27,5 +28,13 @@ public interface ArchivoService {
     public List<Archivo> obtenerCarpetasporPersona(int idPropietario);
     
     public Archivo obtenerArchivo(int idArchivo);
+
+    public Archivo crearArchivo(Archivo archivo);
+
+    public Archivo crearCarpeta(Carpeta carpeta);
+
+    public String extraerCarpeta(int idArchivo);
+
+
 
 }

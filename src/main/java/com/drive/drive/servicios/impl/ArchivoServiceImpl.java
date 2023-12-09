@@ -7,10 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.drive.drive.Dto.Carpeta;
 import com.drive.drive.modelos.Archivo;
 import com.drive.drive.modelos.Compartido;
 import com.drive.drive.repositorios.ArchivoRepository;
 import com.drive.drive.repositorios.CompartidoRepository;
+import com.drive.drive.repositorios.TipoArchivoRepository;
+import com.drive.drive.repositorios.UbicacionArchivoRepository;
+import com.drive.drive.repositorios.UsuarioRepository;
 import com.drive.drive.servicios.ArchivoService;
 
 @Service
@@ -18,6 +22,9 @@ public class ArchivoServiceImpl implements ArchivoService{
 
     @Autowired ArchivoRepository archivoRepository;
     @Autowired CompartidoRepository compartidoRepository;
+    @Autowired UsuarioRepository usuarioRepository;
+    @Autowired UbicacionArchivoRepository ubicacionArchivoRepository;
+    @Autowired TipoArchivoRepository tipoArchivoRepository;
 
     @Override
     public List<Archivo> obtenerTodosLosArchivos(int idPropietario) {
@@ -75,15 +82,49 @@ public class ArchivoServiceImpl implements ArchivoService{
 
     @Override
     public List<Archivo> obtenerCarpetasporPersona(int idPropietario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerCarpetasporPersona'");
+        List<Archivo> listaArchivos = this.archivoRepository.findByTipoArchivo_IdTipoArchivoAndPropietario_IdUsuario(idPropietario, idPropietario);
+        return listaArchivos;
     }
 
     @Override
     public Archivo obtenerArchivo(int idArchivo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerArchivo'");
+        Archivo archivo = this.archivoRepository.findById(idArchivo).get();
+        return archivo;
     }
+
+    @Override
+    public Archivo crearArchivo(Archivo archivo) {
+        return this.archivoRepository.save(archivo);
+    }
+
+    @Override
+    public Archivo crearCarpeta(Carpeta carpeta) {
+        Archivo nvoCarpeta = new Archivo();
+        nvoCarpeta.setTamano(0);
+        nvoCarpeta.setNombre(carpeta.getNombre());
+        nvoCarpeta.setPropietario(this.usuarioRepository.findById(carpeta.getPropietaro()).get());
+        nvoCarpeta.setFechaCreacion(carpeta.getFechaCreacion());
+        nvoCarpeta.setFechaAbierto(carpeta.getFechaCreacion());
+        nvoCarpeta.setDescripcion("");
+        nvoCarpeta.setUbicacionArchivo(this.ubicacionArchivoRepository.findById(carpeta.getUbicacion()).get());
+        nvoCarpeta.setTipoArchivo(this.tipoArchivoRepository.findById(1).get()); //poner el id que corresponda a la carpetas
+        this.archivoRepository.save(nvoCarpeta);
+        return nvoCarpeta;
+    }
+
+    @Override
+    public String extraerCarpeta(int idArchivo) {
+        Archivo archivo = this.archivoRepository.findById(idArchivo).get();
+        List<Archivo> archivos = this.archivoRepository.findByUbicacionArchivo_UbicacionPadre_IdUbicacion(archivo.getUbicacionArchivo().getIdUbicacion());
+        for (Archivo elemento : archivos) {
+            elemento.setUbicacionArchivo(archivo.getUbicacionArchivo());
+        }
+
+        return "Carpeta Extraida";
+        
+    
+    }
+
 
     
 }
